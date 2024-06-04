@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wether App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="card">
+      <div class="search">
+        <input
+          type="text"
+          placeholder="enter city"
+          spellcheck="false"
+          class="text-input"
+        />
+        <button><img src="search.png" /></button>
+      </div>
+      <div class="wether">
+        <img src="rain.png" alt="wether-icon" />
+        <h1>
+          <span class="temp">25</span>
+          <span>°C</span>
+        </h1>
+        <h2 class="city">Kolkata</h2>
+        <h2 class="time"></h2>
+        <div class="details">
+          <div class="col">
+            <img src="humidity.png" alt="" />
+            <div>
+              <p class="humidity">50%</p>
+              <p>humidity</p>
+            </div>
+          </div>
+          <div class="col">
+            <img src="wind.png" alt="" />
+            <div>
+              <p class="wind">15km/h</p>
+              <p>wind speed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-date-format@0.0.2/js-date-format.min.js"></script>
+
+    <script>
+      const apikey = "fff827f266ee76bc98b6516c00b8b5cd";
+
+      var locationString = "Kolkata";
+
+      async function checkWeather() {
+        const apiurl = `https://api.openweathermap.org/data/2.5/weather?unit=matric&q=${locationString}`;
+        const response = await fetch(apiurl + `&appid=${apikey}`);
+        var data = await response.json();
+
+        console.log(data);
+
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML =
+          parseInt(data.main.temp) - 273;
+        document.querySelector(".humidity").innerHTML = data.main.humidity;
+        document.querySelector(".wind").innerHTML = data.wind.speed;
+
+        // document.querySelector('.time').innerHTML = new Intl.DateTimeFormat('en', {
+        //     year: 'numeric',
+        //     month: 'numeric',
+        //      day: 'numeric',
+        //     hour: 'numeric',
+        //     minute: 'numeric',
+        // }).format(new Date(data.dt + '000'));
+
+        console.log(dt.today("y,d,m", "/"));
+
+        document.querySelector(".text-input").value = locationString;
+      }
+
+      document.querySelector(".text-input").addEventListener("change", (e) => {
+        locationString = e.target.value;
+        checkWeather();
+      });
+
+      window.onload = checkWeather();
+    </script>
+  </body>
+</html>
