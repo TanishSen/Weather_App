@@ -3,6 +3,7 @@ nothing much nothing
 yeppi
 
 
+<<<<<<< HEAD
 
 kemon achi amioo jani naaa bhai 
 
@@ -11,3 +12,6 @@ added in main branch
 added in feature 
 
 hogalala smp
+=======
+adding in feature branch 
+>>>>>>> feature/navbar
